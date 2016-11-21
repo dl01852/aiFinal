@@ -9,20 +9,24 @@ class State:
         # self.flattened = self.flatten_list() # a flattened version of current for optimization
         if parent is None:
             self.parent = None
+            self.flattened = current_state
+            self.pathCost = 0
             #self.path = copy.deepcopy(self.current)
             #self.current = current_state
-            self.flattened =  current_state
+
            # self.current_coords = self.get_current_coords()
            # self.path = self.flattened[:]
-            self.pathCost = 0
+
         else:
             self.parent = parent
-            #self.path = self.parent.path[:]
             self.flattened = current_state
+            self.pathCost = parent.pathCost + 1
+            #self.path = self.parent.path[:]
+
             #self.current = self.unflatten_list()
           #  self.current_coords = self.get_current_coords()
             #  self.path.append(self.flattened)
-            self.pathCost = parent.pathCost + 1
+
 
 
     def manhattan_distance(self, goal_state_coords):
